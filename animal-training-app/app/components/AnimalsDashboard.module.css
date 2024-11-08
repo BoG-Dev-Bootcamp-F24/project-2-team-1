@@ -1,40 +1,25 @@
 /* AnimalsDashboard.module.css */
 
 .dashboard {
-    padding: 16px;
-    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 1200px;
+    /* Set this to the desired max width */
+    margin: 0 auto;
+    /* Center the container */
 }
 
-.topBar {
+.entireDashboard {
+    max-width: 1400px;
+}
+
+.animalContainer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #6e6e6e;
-}
-
-.createButton {
-    background-color: transparent;
-    border: none;
-    color: #6e6e6e;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-}
-
-.createButton::before {
-    content: '+ ';
-    font-weight: bold;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
 .separator {
     border: none;
     border-top: 1px solid #ddd;
-    margin: 8px 0;
 }

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Animal from './Animal';
 import TopBar from './Topbar';
-import AnimalForm from './AnimalForm'; // Import the new AnimalForm component
+import AnimalForm from './AnimalForm';
 import styles from './AnimalsDashboard.module.css';
 
 const AnimalsDashboard = () => {
@@ -80,7 +80,7 @@ const AnimalsDashboard = () => {
 
   return (
     <div className={styles.entireDashboard}>
-      <TopBar onCreateClick={handleCreateClick} />
+      <TopBar title={"All animals"} onCreateClick={handleCreateClick} />
       {showForm ? (
         <AnimalForm
           formData={formData}

@@ -1,6 +1,6 @@
 // TrainingLog.tsx
 import React from 'react';
-import styles from './TrainingLog.module.css';
+import styles from './trainLogs.css';
 
 interface TrainingLogProps {
   date: string;

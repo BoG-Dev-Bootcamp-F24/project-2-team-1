@@ -2,7 +2,7 @@ import React from 'react';
 import DashboardLayout from './DashboardLayout';
 import TopBar from './TopBar';
 import TrainingLog from './TrainingLog';
-import styles from './TrainingLogsPage.module.css';
+import styles from './trainLogs.css';
 
 const TrainingLogsPage: React.FC = () => {
   const logs = [

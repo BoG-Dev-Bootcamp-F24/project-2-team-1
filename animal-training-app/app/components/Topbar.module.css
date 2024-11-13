@@ -1,0 +1,30 @@
+.topBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    /* Reduce top and bottom padding for a tighter look */
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid #535353;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6e6e6e;
+}
+
+.createButton {
+    background-color: transparent;
+    border: none;
+    color: #6e6e6e;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.createButton::before {
+    font-weight: bold;
+}

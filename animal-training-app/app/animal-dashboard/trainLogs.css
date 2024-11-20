@@ -1,0 +1,44 @@
+.trainingLog {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background-color: #fff;
+  }
+  
+  .logDate {
+    width: 80px;
+    text-align: center;
+    background-color: #283593;
+    color: #fff;
+    padding: 10px 0;
+    border-radius: 8px;
+  }
+  
+  .logContent {
+    flex: 1;
+    margin-left: 16px;
+  }
+  
+  .logTitle {
+    font-weight: bold;
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .logDescription {
+    color: #666;
+    margin-top: 4px;
+    font-size: 14px;
+  }
+  
+  .editButton {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  

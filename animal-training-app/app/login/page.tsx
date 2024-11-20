@@ -1,24 +1,41 @@
-// pages/login/page.tsx
 "use client";
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation'; // Import the useRouter hook
 import styles from './login.module.css'; // Import the CSS module
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null); // State for error handling
+  const router = useRouter(); // Initialize useRouter
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await res.json();
-    alert(data.message);
-    if (data.token) {
-      localStorage.setItem('token', data.token);
+    setError(null); // Reset any previous errors
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.token) {
+        // Save the token to local storage
+        localStorage.setItem('token', data.token);
+
+        // Redirect to the animal-dashboard
+        router.push('/animal-dashboard');
+      } else {
+        // Handle error from server
+        setError(data.message || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      setError('An unexpected error occurred. Please try again.');
+      console.error('Error during login:', error);
     }
   };
 
@@ -50,11 +67,17 @@ const LoginPage = () => {
           required
           className={styles.input}
         />
-        <button type="submit" className={styles.button}>Log in</button>
+        <button type="submit" className={styles.button}>
+          Log in
+        </button>
+        {error && <p className={styles.error}>{error}</p>} {/* Display error */}
       </form>
 
       <p className={styles.footer}>
-        Don’t have an account? <a href="/create-account" className={styles.link}>Sign up</a>
+        Don’t have an account?{' '}
+        <a href="/create-account" className={styles.link}>
+          Sign up
+        </a>
       </p>
 
       <footer className={styles.footer}>

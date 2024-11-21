@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaClipboardList, FaDog, FaFolderOpen, FaUsers } from 'react-icons/fa';
+import { FaClipboardList, FaDog, FaFolderOpen, FaUsers, FaSignOutAlt } from 'react-icons/fa';
 
 const Sidebar = () => {
   return (
@@ -18,12 +18,12 @@ const Sidebar = () => {
       </Link>
       <hr />
       <p className="training-dashboard">Admin access</p>
-      <Link href="/training-dashboard" className="sidebarLink">
+      <Link href="/admin-dashboards/training-dashboard" className="sidebarLink">
         <div className="linkContent">
           <FaFolderOpen className="icon" /> All Training
         </div>
       </Link>
-      <Link href="/animal-dashboard" className="sidebarLink">
+      <Link href="admin-dashboards/animal-dashboard" className="sidebarLink">
         <div className="linkContent">
           <FaDog className="icon" /> All Animals
         </div>
@@ -31,6 +31,14 @@ const Sidebar = () => {
       <Link href="/user-dashboard" className="sidebarLink">
         <div className="linkContent">
           <FaUsers className="icon" /> All Users
+        </div>
+      </Link>
+
+      <hr />
+      {/* Log out link */}
+      <Link href="/login" className="sidebarLink logoutLink">
+        <div className="linkContent">
+          <FaSignOutAlt className="icon" /> Log Out
         </div>
       </Link>
 
@@ -82,6 +90,14 @@ const Sidebar = () => {
           margin: 10px 0;
           border: none;
           border-top: 1px solid #ccc;
+        }
+        .logoutLink .linkContent {
+          margin-top: auto; /* Push log out link to the bottom */
+          background-color: #f44336; /* Red background for log out */
+          color: white; /* White text for log out */
+        }
+        .logoutLink:hover .linkContent {
+          background-color: #d32f2f; /* Darker red on hover */
         }
       `}</style>
     </div>

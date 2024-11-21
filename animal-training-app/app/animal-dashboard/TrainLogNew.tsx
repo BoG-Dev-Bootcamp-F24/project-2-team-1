@@ -2,6 +2,7 @@
 import React from 'react';
 import styles from './trainLogs.css';
 
+
 interface TrainingLogProps {
   date: string;
   title: string;

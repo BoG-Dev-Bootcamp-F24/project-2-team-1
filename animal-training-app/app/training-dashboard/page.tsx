@@ -7,7 +7,6 @@ import styles from './trainLogs.module.css';
 import Sidebar from '../components/Sidebar';
 import Paw from '../animal-dashboard/Paw'; // Import the Paw component
 
-
 const TrainingLogsPage: React.FC = () => {
   const [logs, setLogs] = useState<{ date: string; title: string; description: string }[]>([]);
   const [isCreating, setIsCreating] = useState(false);
@@ -56,6 +55,13 @@ const TrainingLogsPage: React.FC = () => {
     setIsCreating(false);
   };
 
+  // Function to format the date
+  const formatDate = (date: string) => {
+    const parsedDate = new Date(date);
+    const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'short' };
+    return parsedDate.toLocaleDateString('en-US', options);
+  };
+
   return (
     <div className={styles.pageContainer}>
       <Paw />
@@ -73,8 +79,8 @@ const TrainingLogsPage: React.FC = () => {
             logs.map((log, index) => (
               <div key={index} className={styles.trainingLogContainer}>
                 <div className={styles.logDateContainer}>
-                  <div className={styles.logDateDay}>{log.date.split(' ')[0]}</div>
-                  <div className={styles.logDateMonthYear}>{log.date.substring(3)}</div>
+                  <div className={styles.logDateDay}>{formatDate(log.date).split(' ')[0]}</div>
+                  <div className={styles.logDateMonthYear}>{formatDate(log.date).substring(3)}</div>
                 </div>
                 <div className={styles.logContentContainer}>
                   <div className={styles.logHeader}>

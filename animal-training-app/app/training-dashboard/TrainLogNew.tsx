@@ -1,6 +1,6 @@
 // TrainingLog.tsx
 import React from 'react';
-import styles from './trainLogs.css';
+import './trainLogs.css';
 
 
 interface TrainingLogProps {

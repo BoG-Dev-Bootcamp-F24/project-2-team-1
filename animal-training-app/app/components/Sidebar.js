@@ -18,7 +18,7 @@ const Sidebar = () => {
       </Link>
       <hr />
       <p className="training-dashboard">Admin access</p>
-      <Link href="/training-dashboard" className="sidebarLink">
+      <Link href="/admin-dashboards/training-dashboard" className="sidebarLink">
         <div className="linkContent">
           <FaFolderOpen className="icon" /> All Training
         </div>

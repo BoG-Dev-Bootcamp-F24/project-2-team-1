@@ -26,7 +26,7 @@ const LoginPage = () => {
       if (res.ok && data.token) {
         localStorage.setItem('token', data.token);
 
-        router.push('/animal-dashboard');
+        router.push('/training-dashboard');
       } else {
         setError(data.message || 'Login failed. Please try again.');
       }

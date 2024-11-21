@@ -81,35 +81,36 @@ const AnimalsDashboard = () => {
       
       <div className={styles.navAndAnimalWrapper}>
       <Sidebar />
-        <div className={styles.animalContainerWrapper}>
-          {showForm ? (
-            <AnimalForm
-              formData={formData}
-              error={error}
-              onCancel={() => setShowForm(false)}
-              onSubmitSuccess={handleFormSubmitSuccess}
-              onInputChange={handleInputChange}
-            />
-          ) : (
-            loading ? (
-              <p>Loading animals...</p>
-            ) : error ? (
-              <p>{error}</p>
-            ) : (
-              animals.map((animal) => (
-                <Animal
-                  key={animal._id}
-                  id={animal._id}
-                  name={animal.name}
-                  breed={animal.breed}
-                  owner={animal.owner}
-                  hoursTrained={animal.hoursTrained}
-                  imageUrl={animal.profilePicture}
-                />
-              ))
-            )
-          )}
+      <div className={styles.animalContainerWrapper}>
+  {showForm ? (
+    <AnimalForm
+      formData={formData}
+      error={error}
+      onCancel={() => setShowForm(false)}
+      onSubmitSuccess={handleFormSubmitSuccess}
+      onInputChange={handleInputChange}
+    />
+  ) : (
+    loading ? (
+      <p>Loading animals...</p>
+    ) : error ? (
+      <p>{error}</p>
+    ) : (
+      animals.map((animal) => (
+        <div key={animal._id} className={styles.animalCard}>
+          <Animal
+            id={animal._id}
+            name={animal.name}
+            breed={animal.breed}
+            owner={animal.owner}
+            hoursTrained={animal.hoursTrained}
+            imageUrl={animal.profilePicture}
+          />
         </div>
+      ))
+    )
+  )}
+</div>
       </div>
     </div>
   );

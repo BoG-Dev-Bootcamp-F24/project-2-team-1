@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './UsersDashboard.module.css';
 import TopBar from '../animal-dashboard/Topbar';
 import User from './User';
+import Sidebar from '../components/Sidebar';
 
 const UsersDashboard = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
@@ -69,7 +70,9 @@ const UsersDashboard = () => {
   return (
     <div className={styles.entireDashboard}>
       <TopBar title="All users" showCreateButton={false} />
+      <Sidebar/>
       <div className={styles.userContainer}>
+        
         {users.map((user, index) => (
           <User
             key={index}

@@ -80,20 +80,23 @@ const AnimalsDashboard = () => {
   };
 
   return (
-    <div className={styles.entireDashboard}>
-    <Sidebar /> {}
-      <TopBar onCreateClick={handleCreateClick} />
-      {showForm ? (
-        <AnimalForm
-          formData={formData}
-          error={error}
-          onCancel={() => setShowForm(false)}
-          onSubmit={handleFormSubmit}
-          onInputChange={handleInputChange}
-        />
-      ) : (
-        <div className={styles.animalContainer}>
-          {loading ? (
+  <div className={styles.entireDashboard}>
+    <TopBar onCreateClick={handleCreateClick} />
+    <div className={styles.dashboardWrapper}>
+      <div className={styles.sidebar}>
+        <Sidebar />
+      </div>
+      <div className={styles.animalContainerWrapper}>
+        {showForm ? (
+          <AnimalForm
+            formData={formData}
+            error={error}
+            onCancel={() => setShowForm(false)}
+            onSubmit={handleFormSubmit}
+            onInputChange={handleInputChange}
+          />
+        ) : (
+          loading ? (
             <p>Loading animals...</p>
           ) : (
             animals.map((animal) => (
@@ -107,11 +110,12 @@ const AnimalsDashboard = () => {
                 imageUrl={animal.imageUrl}
               />
             ))
-          )}
-        </div>
-      )}
+          )
+        )}
+      </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default AnimalsDashboard;

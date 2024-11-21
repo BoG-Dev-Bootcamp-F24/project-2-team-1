@@ -21,18 +21,66 @@
     width: 200px; /* Set a fixed width for sidebar */
     flex-shrink: 0; /* Prevent shrinking */
   }
-  
-  .animalContainer {
-    flex-grow: 1; /* Allow animal container to take the remaining space */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
-    gap: 0; /* No gap between elements */
+
+  .sidebar {
+    flex: 0 0 250px; /* Adjust width of the sidebar */
+    margin-right: 20px; /* Space between sidebar and animal container */
   }
   
+  .animalContainerWrapper {
+    flex: 1; /* This makes the animal container take up remaining space */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .animalContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
 .separator {
     border: none;
     border-top: 1px solid #ddd;
+}
+.navAndAnimalWrapper {
+    display: flex;
+    width: 100%; /* Ensures it takes the full width of the container */
+  }
+  
+  .sidebar {
+    flex: 0 0 250px; /* Sidebar has a fixed width */
+    margin-right: 20px; /* Space between sidebar and animal container */
+  }
+  
+  .animalContainerWrapper {
+    flex: 1; /* Animal container will take up the remaining space */
+    display: flex;
+    flex-direction: row; /* If you want it to stack vertically within this section */
+    justify-content: flex-start;
+    flex: 1;
+    gap: 10px;
+
+  }
+  
+  .animalContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-height: 600px;
+  }
+  .animalCard {
+    width: 200px; /* Controls the size of individual animal cards */
+    margin-bottom: 15px;
+    /* Add any other styles for individual animal cards */
+  }
+  .animalContainer,
+.animalFormContainer {
+  max-width: 600px; /* Sets a max-width to keep the elements from stretching too wide */
+  width: 100%; /* Ensures that elements are responsive */
+  margin: 0 auto; /* Centers the elements inside the container */
+  flex-shrink: 0; /* Prevents elements from shrinking */
 }

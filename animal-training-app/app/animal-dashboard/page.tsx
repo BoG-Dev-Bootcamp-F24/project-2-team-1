@@ -77,20 +77,21 @@ const AnimalsDashboard = () => {
 
   return (
     <div className={styles.entireDashboard}>
-    <TopBar title="All animals" onCreateClick={handleCreateClick} />
+      <TopBar title="All animals" onCreateClick={handleCreateClick} />
+      
+      <div className={styles.navAndAnimalWrapper}>
       <Sidebar />
-      <div className={styles.animalContainer}>
-        {showForm ? (
-          <AnimalForm
-            formData={formData}
-            error={error}
-            onCancel={() => setShowForm(false)}
-            onSubmitSuccess={handleFormSubmitSuccess}
-            onInputChange={handleInputChange}
-          />
-        ) : (
-          <div className={styles.animalContainer}>
-            {loading ? (
+        <div className={styles.animalContainerWrapper}>
+          {showForm ? (
+            <AnimalForm
+              formData={formData}
+              error={error}
+              onCancel={() => setShowForm(false)}
+              onSubmitSuccess={handleFormSubmitSuccess}
+              onInputChange={handleInputChange}
+            />
+          ) : (
+            loading ? (
               <p>Loading animals...</p>
             ) : error ? (
               <p>{error}</p>
@@ -106,9 +107,9 @@ const AnimalsDashboard = () => {
                   imageUrl={animal.profilePicture}
                 />
               ))
-            )}
-          </div>
-        )}
+            )
+          )}
+        </div>
       </div>
     </div>
   );

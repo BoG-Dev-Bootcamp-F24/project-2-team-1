@@ -12,13 +12,23 @@
     max-width: 1400px;
 }
 
-.animalContainer {
+.dashboardWrapper {
+    display: flex; /* Use flexbox for side-by-side layout */
+    gap: 20px; /* Add space between sidebar and animal container */
+  }
+  
+  .sidebar {
+    width: 250px; /* Fixed width for the sidebar */
+  }
+  
+  .animalContainerWrapper {
+    flex-grow: 1; /* Allow the animal container to take up remaining space */
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-}
-
+  }
+  
 .separator {
     border: none;
     border-top: 1px solid #ddd;

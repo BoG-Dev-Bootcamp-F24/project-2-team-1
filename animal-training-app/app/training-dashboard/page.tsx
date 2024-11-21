@@ -5,6 +5,8 @@ import TopBar from '../animal-dashboard/Topbar';
 import TrainLogNew from './TrainLogNew';
 import styles from './trainLogs.module.css';
 import Sidebar from '../components/Sidebar';
+import Paw from '../animal-dashboard/Paw'; // Import the Paw component
+
 
 const TrainingLogsPage: React.FC = () => {
   const [logs, setLogs] = useState<{ date: string; title: string; description: string }[]>([]);
@@ -56,6 +58,7 @@ const TrainingLogsPage: React.FC = () => {
 
   return (
     <div className={styles.pageContainer}>
+      <Paw />
       <TopBar title="Training Logs" onCreateClick={handleCreateClick} />
       <div className={styles.contentWrapper}> {/* New wrapper for sidebar and logs */}
         <Sidebar />

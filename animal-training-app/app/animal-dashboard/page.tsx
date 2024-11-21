@@ -77,7 +77,7 @@ const AnimalsDashboard = () => {
 
   return (
     <div className={styles.entireDashboard}>
-      <Paw /> {/* Add Paw component above TopBar */}
+      <Paw />
       <TopBar title="All animals" onCreateClick={handleCreateClick} />
 
       <div className={styles.navAndAnimalWrapper}>

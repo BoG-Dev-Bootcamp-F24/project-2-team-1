@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import TopBar from '../animal-dashboard/Topbar';
 import TrainLogNew from './TrainLogNew';
 import styles from './trainLogs.module.css';
+import Paw from '../../../animal-dashboard/Paw';
 
 const TrainingLogsPage: React.FC = () => {
   const [logs, setLogs] = useState<{ date: string; title: string; description: string }[]>([]);
@@ -56,6 +57,7 @@ const TrainingLogsPage: React.FC = () => {
 
   return (
     <div className={styles.pageContainer}>
+      <Paw />
       <TopBar title="Training Logs" onCreateClick={handleCreateClick} />
       {isCreating ? (
         <TrainLogNew onCreateLog={handleCreateLog} onCancelCreate={handleCancelCreate} />

@@ -4,16 +4,18 @@ import React, { useEffect, useState } from 'react';
 import styles from './AnimalsDashboard.module.css';
 import TopBar from './Topbar';
 import Animal from './Animal';
+import Paw from '../../../animal-dashboard/Paw';
+
 
 const AnimalsDashboard = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null); // Admin check
-  const [animals, setAnimals] = useState<{ 
-    _id: string; 
-    name: string; 
-    breed: string; 
-    owner?: string; 
-    hoursTrained: number; 
-    imageUrl: string; 
+  const [animals, setAnimals] = useState<{
+    _id: string;
+    name: string;
+    breed: string;
+    owner?: string;
+    hoursTrained: number;
+    imageUrl: string;
   }[]>([]); // List of animals
   const [error, setError] = useState<string | null>(null); // Error state
   const [isLoading, setIsLoading] = useState(true); // Loading state
@@ -79,6 +81,7 @@ const AnimalsDashboard = () => {
   // Render animals dashboard
   return (
     <div className={styles.entireDashboard}>
+      <Paw />
       <TopBar title="All Animals" showCreateButton={false} />
       <div className={styles.animalContainer}>
         {animals.map((animal) => (

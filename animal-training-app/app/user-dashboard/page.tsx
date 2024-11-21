@@ -5,6 +5,8 @@ import styles from './UsersDashboard.module.css';
 import TopBar from '../animal-dashboard/Topbar';
 import User from './User';
 import Sidebar from '../components/Sidebar';
+import Paw from '../animal-dashboard/Paw'; // Import the Paw component
+
 
 const UsersDashboard = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
@@ -67,6 +69,7 @@ const UsersDashboard = () => {
 
   return (
   <div className={styles.entireDashboard}>
+    <Paw />
     <TopBar title="All users" showCreateButton={false} />
     <div className={styles.contentWrapper}>
       <Sidebar />

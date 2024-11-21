@@ -44,7 +44,7 @@ const LoginPage = () => {
       {/* Top Progress Bar */}
       <div className={styles.topBar}>
         <div className={styles.logo}>
-          <img src="../pawlogo.png" alt="Logo" /> {/* Update with your logo path */}
+          <img src="/pawlogo.png" alt="Logo" /> {/* Update with your logo path */}
           Progress
         </div>
       </div>

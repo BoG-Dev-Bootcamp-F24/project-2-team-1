@@ -1,12 +1,8 @@
-import React from 'react';
-import AnimalsDashboard from './components/AnimalsDashboard';
-import Animal from './components/Animal';
-
+// app/page.tsx
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <main>
-      <AnimalsDashboard/>
-    </main>
-  );
+  redirect('/login');
+  return null; // This won't render since we’re redirecting
+
 }

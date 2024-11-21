@@ -1,0 +1,25 @@
+/* AnimalsDashboard.module.css */
+
+.dashboard {
+    padding: 20px;
+    max-width: 1200px;
+    /* Set this to the desired max width */
+    margin: 0 auto;
+    /* Center the container */
+}
+
+.entireDashboard {
+    max-width: 1400px;
+}
+
+.animalContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.separator {
+    border: none;
+    border-top: 1px solid #ddd;
+}

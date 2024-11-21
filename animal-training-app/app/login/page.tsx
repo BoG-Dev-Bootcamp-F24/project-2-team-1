@@ -77,7 +77,7 @@ const LoginPage = () => {
       </p>
 
       <footer className={styles.footer}>
-        Made with ♡ by Long Lam<br />
+        Made with ♡ by Team 1<br />
         © 2023 BOG Developer Bootcamp. All rights reserved.
       </footer>
 

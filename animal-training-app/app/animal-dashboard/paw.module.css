@@ -1,0 +1,23 @@
+.topBar {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* Red theme like the current sidebar */
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logoImage {
+    height: 40px; /* Adjust based on logo size */
+    margin-right: 10px;
+  }
+
+  .logoText {
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+  }

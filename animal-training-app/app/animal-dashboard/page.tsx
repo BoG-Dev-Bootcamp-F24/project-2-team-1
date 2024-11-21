@@ -1,10 +1,12 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import Animal from './Animal';
 import TopBar from './Topbar';
+import Paw from './Paw'; // Import the Paw component
 import AnimalForm from './AnimalForm';
 import styles from './AnimalsDashboard.module.css';
 import Sidebar from '../components/Sidebar';
+
 const AnimalsDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [animals, setAnimals] = useState([]);
@@ -52,12 +54,10 @@ const AnimalsDashboard = () => {
     setError('');
   };
 
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
-
 
   const handleFormSubmitSuccess = (newAnimal) => {
     setAnimals((prevAnimals) => [...prevAnimals, newAnimal]);
@@ -77,40 +77,39 @@ const AnimalsDashboard = () => {
 
   return (
     <div className={styles.entireDashboard}>
+      <Paw /> {/* Add Paw component above TopBar */}
       <TopBar title="All animals" onCreateClick={handleCreateClick} />
-      
+
       <div className={styles.navAndAnimalWrapper}>
-      <Sidebar />
-      <div className={styles.animalContainerWrapper}>
-  {showForm ? (
-    <AnimalForm
-      formData={formData}
-      error={error}
-      onCancel={() => setShowForm(false)}
-      onSubmitSuccess={handleFormSubmitSuccess}
-      onInputChange={handleInputChange}
-    />
-  ) : (
-    loading ? (
-      <p>Loading animals...</p>
-    ) : error ? (
-      <p>{error}</p>
-    ) : (
-      animals.map((animal) => (
-        <div key={animal._id} className={styles.animalCard}>
-          <Animal
-            id={animal._id}
-            name={animal.name}
-            breed={animal.breed}
-            owner={animal.owner}
-            hoursTrained={animal.hoursTrained}
-            imageUrl={animal.profilePicture}
-          />
+        <Sidebar />
+        <div className={styles.animalContainerWrapper}>
+          {showForm ? (
+            <AnimalForm
+              formData={formData}
+              error={error}
+              onCancel={() => setShowForm(false)}
+              onSubmitSuccess={handleFormSubmitSuccess}
+              onInputChange={handleInputChange}
+            />
+          ) : loading ? (
+            <p>Loading animals...</p>
+          ) : error ? (
+            <p>{error}</p>
+          ) : (
+            animals.map((animal) => (
+              <div key={animal._id} className={styles.animalCard}>
+                <Animal
+                  id={animal._id}
+                  name={animal.name}
+                  breed={animal.breed}
+                  owner={animal.owner}
+                  hoursTrained={animal.hoursTrained}
+                  imageUrl={animal.profilePicture}
+                />
+              </div>
+            ))
+          )}
         </div>
-      ))
-    )
-  )}
-</div>
       </div>
     </div>
   );

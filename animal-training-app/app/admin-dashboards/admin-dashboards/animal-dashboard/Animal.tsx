@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Animal.module.css';
 
-interface AnimalProps {
+export interface AnimalProps {
   id: string;
   name: string;
   breed: string;
-  owner?: string; // Make owner optional
+  owner?: string;
   hoursTrained: number;
   imageUrl: string;
 }
@@ -13,10 +13,8 @@ interface AnimalProps {
 const Animal: React.FC<AnimalProps> = ({ name, breed, owner = 'Unknown', hoursTrained, imageUrl }) => {
   return (
     <div className={styles.card}>
-      {/* Animal Image */}
       <img src={'https://www.healthypawspetinsurance.com/Images/V3/DogAndPuppyInsurance/Dog_CTA_Desktop_HeroImage.jpg'} alt={`${name} - ${breed}`} className={styles.image} />
 
-      {/* Animal Details */}
       <div className={styles.details}>
         <div className={styles.ownerInitial}>
           {owner ? owner.charAt(0).toUpperCase() : '?'}

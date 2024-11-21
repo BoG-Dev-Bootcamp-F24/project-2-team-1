@@ -14,13 +14,54 @@ interface AnimalFormProps {
   };
   error: string;
   onCancel: () => void;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmitSuccess: (newAnimal: any) => void;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
 }
 
-const AnimalForm: React.FC<AnimalFormProps> = ({ formData, error, onCancel, onSubmit, onInputChange }) => {
+const AnimalForm: React.FC<AnimalFormProps> = ({ formData, error, onCancel, onSubmitSuccess, onInputChange }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('User is not logged in!');
+      return;
+    }
+
+    const birthDate = `${formData.birthMonth} ${formData.birthDate}, ${formData.birthYear}`;
+    const newAnimal = {
+      name: formData.name,
+      breed: formData.breed,
+      hoursTrained: Number(formData.hoursTrained),
+      profilePicture: formData.imageUrl,
+      birthDate,
+      note: formData.note,
+    };
+
+    try {
+      const response = await fetch('/api/animals', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newAnimal),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        onSubmitSuccess(result.animal);
+      } else {
+        alert(result.message || 'Failed to create animal');
+      }
+    } catch (err) {
+      alert('An error occurred while creating the animal');
+    }
+  };
+
   return (
-    <form className={styles.animalForm} onSubmit={onSubmit}>
+    <form className={styles.animalForm} onSubmit={handleSubmit}>
       <h3>Create New Animal</h3>
 
       <label>Animal Name</label>

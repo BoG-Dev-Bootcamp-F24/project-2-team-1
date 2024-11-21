@@ -3,7 +3,6 @@
     align-items: center;
     background-color: #ffffff; /* Red theme like the current sidebar */
     padding: 10px 20px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .logo {

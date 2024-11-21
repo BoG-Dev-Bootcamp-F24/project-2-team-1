@@ -21,88 +21,89 @@ const AnimalsDashboard = () => {
   });
   const [error, setError] = useState('');
 
+  // Fetch animals from the backend API
   useEffect(() => {
-    setTimeout(() => {
-      setAnimals([
-        {
-          id: '1',
-          name: 'Bella',
-          breed: 'Golden Retriever',
-          owner: 'John Doe',
-          hoursTrained: 120,
-          imageUrl: 'https://example.com/images/bella.jpg',
-        },
-        {
-          id: '2',
-          name: 'Max',
-          breed: 'Bulldog',
-          owner: 'Jane Smith',
-          hoursTrained: 80,
-          imageUrl: 'https://example.com/images/max.jpg',
-        },
-        {
-          id: '3',
-          name: 'Luna',
-          breed: 'Poodle',
-          hoursTrained: 100,
-          imageUrl: 'https://example.com/images/luna.jpg',
-        },
-      ]);
-      setLoading(false);
-    }, 2000);
+    const fetchAnimals = async () => {
+      try {
+        setLoading(true);
+        const token = localStorage.getItem('token'); // Assuming JWT is stored in localStorage
+        const response = await fetch('/api/animals', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setAnimals(data.animals);
+        } else {
+          setError(data.message || 'Failed to load animals');
+        }
+      } catch (err) {
+        setError('Error fetching animals');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnimals();
   }, []);
 
+  // Show the form when the create button is clicked
   const handleCreateClick = () => {
     setShowForm(true);
+    setError(''); // Clear any previous errors
   };
 
+  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.name || !formData.breed || !formData.hoursTrained) {
-      setError('Please fill in all fields.');
-      return;
-    }
-    const newAnimal = {
-      id: String(animals.length + 1),
-      ...formData,
-      hoursTrained: Number(formData.hoursTrained),
-      owner: 'Tracked User',
-    };
-    setAnimals((prevAnimals) => [...prevAnimals, newAnimal]);
-    setShowForm(false);
+  // Handle form submission
+  const handleFormSubmitSuccess = (newAnimal) => {
+    setAnimals((prevAnimals) => [...prevAnimals, newAnimal]); // Add the new animal to the list
+    setShowForm(false); // Close the form
+    setFormData({
+      name: '',
+      breed: '',
+      hoursTrained: '',
+      imageUrl: '',
+      birthMonth: '',
+      birthDate: '',
+      birthYear: '',
+      note: '',
+    }); // Reset the form
     setError('');
   };
 
   return (
     <div className={styles.entireDashboard}>
-      <TopBar title={"All animals"} onCreateClick={handleCreateClick} />
+      <TopBar title="All animals" onCreateClick={handleCreateClick} />
       {showForm ? (
         <AnimalForm
           formData={formData}
           error={error}
           onCancel={() => setShowForm(false)}
-          onSubmit={handleFormSubmit}
+          onSubmitSuccess={handleFormSubmitSuccess}
           onInputChange={handleInputChange}
         />
       ) : (
         <div className={styles.animalContainer}>
           {loading ? (
             <p>Loading animals...</p>
+          ) : error ? (
+            <p>{error}</p>
           ) : (
             animals.map((animal) => (
               <Animal
-                key={animal.id}
-                id={animal.id}
+                key={animal._id}
+                id={animal._id}
                 name={animal.name}
                 breed={animal.breed}
                 owner={animal.owner}
                 hoursTrained={animal.hoursTrained}
-                imageUrl={animal.imageUrl}
+                imageUrl={animal.profilePicture}
               />
             ))
           )}

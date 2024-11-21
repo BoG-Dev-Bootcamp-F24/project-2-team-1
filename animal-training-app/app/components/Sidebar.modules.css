@@ -1,0 +1,25 @@
+/* Sidebar.module.css */
+
+.sidenav {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  /* Style each link */
+  .sidebarLink {
+    display: inline-block;          /* Ensures padding applies correctly */
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border: 2px solid red;          /* Red border */
+    border-radius: 10px;            /* Rounded corners */
+    color: black;                   /* Text color */
+    text-decoration: none;          /* Remove underline */
+    transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+  }
+  
+  .sidebarLink:hover {
+    background-color: red;          /* Background turns red on hover */
+    color: white;                   /* Text turns white on hover */
+  }
+  

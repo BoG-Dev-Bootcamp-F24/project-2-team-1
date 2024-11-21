@@ -4,7 +4,7 @@ import Animal from './Animal';
 import TopBar from './Topbar';
 import AnimalForm from './AnimalForm';
 import styles from './AnimalsDashboard.module.css';
-
+import Sidebar from '../components/Sidebar';
 const AnimalsDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [animals, setAnimals] = useState([]);
@@ -77,36 +77,39 @@ const AnimalsDashboard = () => {
 
   return (
     <div className={styles.entireDashboard}>
-      <TopBar title="All animals" onCreateClick={handleCreateClick} />
-      {showForm ? (
-        <AnimalForm
-          formData={formData}
-          error={error}
-          onCancel={() => setShowForm(false)}
-          onSubmitSuccess={handleFormSubmitSuccess}
-          onInputChange={handleInputChange}
-        />
-      ) : (
-        <div className={styles.animalContainer}>
-          {loading ? (
-            <p>Loading animals...</p>
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            animals.map((animal) => (
-              <Animal
-                key={animal._id}
-                id={animal._id}
-                name={animal.name}
-                breed={animal.breed}
-                owner={animal.owner}
-                hoursTrained={animal.hoursTrained}
-                imageUrl={animal.profilePicture}
-              />
-            ))
-          )}
-        </div>
-      )}
+    <TopBar title="All animals" onCreateClick={handleCreateClick} />
+      <Sidebar />
+      <div className={styles.animalContainer}>
+        {showForm ? (
+          <AnimalForm
+            formData={formData}
+            error={error}
+            onCancel={() => setShowForm(false)}
+            onSubmitSuccess={handleFormSubmitSuccess}
+            onInputChange={handleInputChange}
+          />
+        ) : (
+          <div className={styles.animalContainer}>
+            {loading ? (
+              <p>Loading animals...</p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              animals.map((animal) => (
+                <Animal
+                  key={animal._id}
+                  id={animal._id}
+                  name={animal.name}
+                  breed={animal.breed}
+                  owner={animal.owner}
+                  hoursTrained={animal.hoursTrained}
+                  imageUrl={animal.profilePicture}
+                />
+              ))
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

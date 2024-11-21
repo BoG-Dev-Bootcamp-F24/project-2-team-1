@@ -4,6 +4,7 @@ import Animal from './Animal';
 import TopBar from './Topbar';
 import AnimalForm from './AnimalForm'; // Import the new AnimalForm component
 import styles from './AnimalsDashboard.module.css';
+ import Sidebar from './Sidebar';
 
 const AnimalsDashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -80,6 +81,7 @@ const AnimalsDashboard = () => {
 
   return (
     <div className={styles.entireDashboard}>
+    <Sidebar /> {}
       <TopBar onCreateClick={handleCreateClick} />
       {showForm ? (
         <AnimalForm

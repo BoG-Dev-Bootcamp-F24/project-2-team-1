@@ -17,7 +17,6 @@ const UsersDashboard = () => {
       try {
         const token = localStorage.getItem('token');
 
-
         const roleResponse = await fetch('/api/check-admin', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -30,7 +29,6 @@ const UsersDashboard = () => {
 
         const roleData = await roleResponse.json();
         setIsAdmin(roleData.isAdmin);
-
 
         const usersResponse = await fetch('/api/users', {
           headers: {
@@ -68,22 +66,24 @@ const UsersDashboard = () => {
   }
 
   return (
-    <div className={styles.entireDashboard}>
-      <TopBar title="All users" showCreateButton={false} />
-      <Sidebar/>
+  <div className={styles.entireDashboard}>
+    <TopBar title="All users" showCreateButton={false} />
+    <div className={styles.contentWrapper}>
+      <Sidebar />
       <div className={styles.userContainer}>
-        
         {users.map((user, index) => (
-          <User
-            key={index}
-            name={user.fullName}
-            role={user.isAdmin ? 'Admin' : 'User'}
-            location={user.email}
-          />
+          <div className={styles.userCard} key={index}>
+            <User
+              name={user.fullName}
+              role={user.isAdmin ? 'Admin' : 'User'}
+              location={user.email}
+            />
+          </div>
         ))}
       </div>
     </div>
-  );
-};
+  </div>
+);
+}
 
 export default UsersDashboard;

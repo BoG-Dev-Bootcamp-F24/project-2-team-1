@@ -14,7 +14,7 @@ interface AnimalFormProps {
   };
   error: string;
   onCancel: () => void;
-  onSubmitSuccess: (newAnimal: any) => void; // Callback for successful creation
+  onSubmitSuccess: (newAnimal: any) => void;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
 }
 
@@ -22,7 +22,7 @@ const AnimalForm: React.FC<AnimalFormProps> = ({ formData, error, onCancel, onSu
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const token = localStorage.getItem('token'); // Assuming JWT is stored here
+    const token = localStorage.getItem('token');
     if (!token) {
       alert('User is not logged in!');
       return;
@@ -51,7 +51,7 @@ const AnimalForm: React.FC<AnimalFormProps> = ({ formData, error, onCancel, onSu
       const result = await response.json();
 
       if (response.ok) {
-        onSubmitSuccess(result.animal); // Pass the new animal to parent component
+        onSubmitSuccess(result.animal);
       } else {
         alert(result.message || 'Failed to create animal');
       }

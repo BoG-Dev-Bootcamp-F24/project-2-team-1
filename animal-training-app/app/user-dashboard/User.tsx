@@ -1,9 +1,9 @@
 // User.tsx
 import React from 'react';
-import styles from './User.module.css'; // Import the CSS module
+import styles from './User.module.css';
 
 interface UserProps {
-  name?: string; // Make this optional with a fallback
+  name?: string;
   role: string;
   location: string;
 }

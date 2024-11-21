@@ -1,18 +1,18 @@
 "use client";
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Import the useRouter hook
-import styles from './login.module.css'; // Import the CSS module
+import { useRouter } from 'next/navigation';
+import styles from './login.module.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null); // State for error handling
-  const router = useRouter(); // Initialize useRouter
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null); // Reset any previous errors
+    setError(null);
 
     try {
       const res = await fetch('/api/auth/login', {
@@ -24,13 +24,10 @@ const LoginPage = () => {
       const data = await res.json();
 
       if (res.ok && data.token) {
-        // Save the token to local storage
         localStorage.setItem('token', data.token);
 
-        // Redirect to the animal-dashboard
         router.push('/animal-dashboard');
       } else {
-        // Handle error from server
         setError(data.message || 'Login failed. Please try again.');
       }
     } catch (error) {
@@ -41,10 +38,9 @@ const LoginPage = () => {
 
   return (
     <div className={styles.container}>
-      {/* Top Progress Bar */}
       <div className={styles.topBar}>
         <div className={styles.logo}>
-          <img src="/pawlogo.png" alt="Logo" /> {/* Update with your logo path */}
+          <img src="/pawlogo.png" alt="Logo" />
           Progress
         </div>
       </div>
@@ -70,7 +66,7 @@ const LoginPage = () => {
         <button type="submit" className={styles.button}>
           Log in
         </button>
-        {error && <p className={styles.error}>{error}</p>} {/* Display error */}
+        {error && <p className={styles.error}>{error}</p>}
       </form>
 
       <p className={styles.footer}>
@@ -85,7 +81,6 @@ const LoginPage = () => {
         © 2023 BOG Developer Bootcamp. All rights reserved.
       </footer>
 
-      {/* Quarter Circle Element */}
       <div className={styles.quarterCircle}></div>
     </div>
   );

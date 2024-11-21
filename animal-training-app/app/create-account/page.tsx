@@ -94,7 +94,7 @@ const CreateAccount = () => {
         <p className={styles.loginLink}>Already have an account? <a href="/login">Sign in</a></p>
       </div>
       <div className={styles.footer}>
-        Made with ❤️ by Long Lam<br />
+        Made with ❤️ by Team 1<br />
         © 2023 BOG Developer Bootcamp. All rights reserved.
       </div>
       <div className={styles.quarterCircle}></div>

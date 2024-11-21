@@ -1,25 +1,86 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TopBar from '../animal-dashboard/Topbar';
 import TrainLogNew from './TrainLogNew';
-import './trainLogs.css';
+import styles from './trainLogs.module.css';
 
 const TrainingLogsPage: React.FC = () => {
-  const logs = [
-    { date: '20 Oct - 2023', title: 'Complete sit lessons', description: 'Lucy finishes the sit lessons very well today. Should give her a treat' },
-    { date: '19 Oct - 2023', title: 'Complete fetch lessons', description: 'Max did very well with fetch today!' },
-    { date: '18 Oct - 2023', title: 'Complete agility training', description: 'Bella showed significant improvement in agility.' },
-  ];
+  const [logs, setLogs] = useState<{ date: string; title: string; description: string }[]>([]);
+  const [isCreating, setIsCreating] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+
+  useEffect(() => {
+    const fetchLogs = async () => {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/training-logs', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error((await response.json()).message || 'Failed to fetch training logs');
+        }
+
+        const data = await response.json();
+        setLogs(data.logs);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error occurred');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchLogs();
+  }, []);
+
+  const handleCreateClick = () => {
+    setIsCreating(true);
+  };
+
+  const handleCreateLog = (newLog: { date: string; title: string; description: string }) => {
+    setLogs((prevLogs) => [newLog, ...prevLogs]);
+    setIsCreating(false);
+  };
+
+  const handleCancelCreate = () => {
+    setIsCreating(false);
+  };
 
   return (
-    <div className="pageContainer">
-      <TopBar title="Training Logs" onCreateClick={() => alert('Create new log')} />
-      <div className="logsContainer">
-        {logs.map((log, index) => (
-          <TrainLogNew key={index} date={log.date} title={log.title} description={log.description} />
-        ))}
-      </div>
+    <div className={styles.pageContainer}>
+      <TopBar title="Training Logs" onCreateClick={handleCreateClick} />
+      {isCreating ? (
+        <TrainLogNew onCreateLog={handleCreateLog} onCancelCreate={handleCancelCreate} />
+      ) : isLoading ? (
+        <p>Loading training logs...</p>
+      ) : error ? (
+        <p className={styles.error}>{error}</p>
+      ) : (
+        <div className={styles.logsContainer}>
+          {logs.map((log, index) => (
+            <div key={index} className={styles.trainingLogContainer}>
+              <div className={styles.logDateContainer}>
+                <div className={styles.logDateDay}>{log.date.split(' ')[0]}</div>
+                <div className={styles.logDateMonthYear}>{log.date.substring(3)}</div>
+              </div>
+              <div className={styles.logContentContainer}>
+                <div className={styles.logHeader}>
+                  <h3 className={styles.logTitle}>{log.title}</h3>
+                </div>
+                <p className={styles.logDescription}>{log.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -3,7 +3,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    /* Reduce top and bottom padding for a tighter look */
     max-width: 1200px;
     margin: 0 auto;
     border-bottom: 1px solid #535353;

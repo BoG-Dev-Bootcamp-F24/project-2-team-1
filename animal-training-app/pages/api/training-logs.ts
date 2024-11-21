@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDatabase } from '../../lib/mongodb';
-import Animal from '../../lib/models/Animal';
+import TrainingLog from '../../lib/models/TrainingLog';
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
@@ -14,35 +14,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET) as { userId: string };
-
-        // Connect to the database
         await connectToDatabase();
 
         if (req.method === 'GET') {
-            const animals = await Animal.find({ owner: decoded.userId });
-            return res.status(200).json({ animals });
+            const logs = await TrainingLog.find({ user: decoded.userId })
+                .populate('animal', 'name breed')
+                .sort({ date: -1 });
+            return res.status(200).json({ logs });
         }
 
         if (req.method === 'POST') {
-            const { name, breed, hoursTrained, profilePicture, birthDate, note } = req.body;
+            const { title, animal, hoursTrained, date, description } = req.body;
 
-            if (!name || !breed || typeof hoursTrained !== 'number') {
-                return res.status(400).json({ message: 'Invalid input data' });
+            if (!title || !animal || !hoursTrained || !date || !description) {
+                return res.status(400).json({ message: 'Missing required fields' });
             }
 
-            const newAnimal = new Animal({
-                name,
-                breed,
-                hoursTrained,
-                profilePicture,
-                owner: decoded.userId,
-                birthDate,
-                note,
+            const newLog = await TrainingLog.create({
+                user: decoded.userId,
+                animal,
+                title,
+                date: new Date(date),
+                description,
+                hours: hoursTrained,
             });
 
-            await newAnimal.save();
-
-            return res.status(201).json({ message: 'Animal created successfully', animal: newAnimal });
+            return res.status(201).json(newLog);
         }
 
         res.setHeader('Allow', ['GET', 'POST']);

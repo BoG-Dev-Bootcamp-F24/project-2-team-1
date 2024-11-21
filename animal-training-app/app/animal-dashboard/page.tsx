@@ -21,12 +21,11 @@ const AnimalsDashboard = () => {
   });
   const [error, setError] = useState('');
 
-  // Fetch animals from the backend API
   useEffect(() => {
     const fetchAnimals = async () => {
       try {
         setLoading(true);
-        const token = localStorage.getItem('token'); // Assuming JWT is stored in localStorage
+        const token = localStorage.getItem('token');
         const response = await fetch('/api/animals', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -48,22 +47,21 @@ const AnimalsDashboard = () => {
     fetchAnimals();
   }, []);
 
-  // Show the form when the create button is clicked
   const handleCreateClick = () => {
     setShowForm(true);
-    setError(''); // Clear any previous errors
+    setError('');
   };
 
-  // Handle form input changes
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // Handle form submission
+
   const handleFormSubmitSuccess = (newAnimal) => {
-    setAnimals((prevAnimals) => [...prevAnimals, newAnimal]); // Add the new animal to the list
-    setShowForm(false); // Close the form
+    setAnimals((prevAnimals) => [...prevAnimals, newAnimal]);
+    setShowForm(false);
     setFormData({
       name: '',
       breed: '',
@@ -73,7 +71,7 @@ const AnimalsDashboard = () => {
       birthDate: '',
       birthYear: '',
       note: '',
-    }); // Reset the form
+    });
     setError('');
   };
 

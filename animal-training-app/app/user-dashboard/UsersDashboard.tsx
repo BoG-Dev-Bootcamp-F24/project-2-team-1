@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import styles from "./UsersDashboard.module.css";
-import TopBar from "./Topbar";
+import TopBar from "../animal-dashboard/Topbar";
 import User from "./User";
 
 const UsersDashboard = () => {

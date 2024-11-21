@@ -1,7 +1,5 @@
-// TrainingLog.tsx
 import React from 'react';
 import './trainLogs.css';
-
 
 interface TrainingLogProps {
   date: string;
@@ -9,17 +7,26 @@ interface TrainingLogProps {
   description: string;
 }
 
-const TrainingLog: React.FC<TrainingLogProps> = ({ date, title, description }) => {
+const TrainLogNew: React.FC<TrainingLogProps> = ({ date, title, description }) => {
   return (
-    <div className={styles.trainingLog}>
-      <div className={styles.logDate}>{date}</div>
-      <div className={styles.logContent}>
-        <h3 className={styles.logTitle}>{title}</h3>
-        <p className={styles.logDescription}>{description}</p>
+    <div className="trainingLogContainer">
+      <div className="logDateContainer">
+        <p className="logDateDay">{date.split(' ')[0]}</p>
+        <p className="logDateMonthYear">{date.split(' ').slice(1).join(' ')}</p>
       </div>
-      <button className={styles.editButton}>Edit</button>
+      <div className="logContentContainer">
+        <div className="logHeader">
+          <h3 className="logTitle">{title}</h3>
+          <span className="logHours">• 20 hours</span>
+        </div>
+        <p className="logDescription">{description}</p>
+        <p className="logSubtitle">Long Lam - Golden Retriever - Lucy</p>
+      </div>
+      <button className="editButton">
+        <i className="material-icons">edit</i>
+      </button>
     </div>
   );
 };
 
-export default TrainingLog;
+export default TrainLogNew;

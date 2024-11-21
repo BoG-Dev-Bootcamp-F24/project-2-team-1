@@ -62,6 +62,7 @@
     justify-content: flex-start;
     flex: 1;
     gap: 10px;
+    margin-left: 5%;
 
   }
   
@@ -76,13 +77,14 @@
   .animalContainer,
 .animalFormContainer {
   max-width: 600px; /* Sets a max-width to keep the elements from stretching too wide */
+  margin-left: 10%;
   width: 100%; /* Ensures that elements are responsive */
   margin: 0 auto; /* Centers the elements inside the container */
   flex-shrink: 0; /* Prevents elements from shrinking */
 }
 /* Style for each Animal card */
 .animalCard {
-    max-height: 350px; /* Limit the max height to make it smaller */
+    max-height: 325px; /* Limit the max height to make it smaller */
     overflow: hidden;  /* Hide overflow if content exceeds the max height */
     padding: 10px;     /* Adjust padding to make the content fit */
     margin: 5px;       /* Adjust margin for spacing between cards */
@@ -93,7 +95,7 @@
     flex-direction: column;
     justify-content: space-between; /* Space out content vertically */
     background-color: #f9f9f9; /* Light background color */
-    width: 350px; /* Set a width for each card to control its size */
+    width: 325px; /* Set a width for each card to control its size */
     text-align: center; /* Center-align content if desired */
   }
   

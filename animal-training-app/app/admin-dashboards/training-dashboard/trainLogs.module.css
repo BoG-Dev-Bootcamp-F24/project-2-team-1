@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
+  width: 100%;   
 }
 .contentWrapper {
   display: flex;           /* Use Flexbox to arrange elements side by side */
@@ -17,7 +17,6 @@
 }
 
 .trainingLogContainer {
-  margin-top: 10px;
   display: flex;
   align-items: center;
   padding: 16px;
@@ -26,6 +25,7 @@
   margin-bottom: 12px;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;   
 }
 
 .logDateContainer {

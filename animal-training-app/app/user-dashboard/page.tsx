@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react';
 import styles from './UsersDashboard.module.css';
 import TopBar from '../animal-dashboard/Topbar';
 import User from './User';
+import Sidebar from '../components/Sidebar';
+import Paw from '../animal-dashboard/Paw'; // Import the Paw component
+
 
 const UsersDashboard = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
@@ -15,7 +18,6 @@ const UsersDashboard = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('token');
-
 
         const roleResponse = await fetch('/api/check-admin', {
           headers: {
@@ -29,7 +31,6 @@ const UsersDashboard = () => {
 
         const roleData = await roleResponse.json();
         setIsAdmin(roleData.isAdmin);
-
 
         const usersResponse = await fetch('/api/users', {
           headers: {
@@ -67,20 +68,25 @@ const UsersDashboard = () => {
   }
 
   return (
-    <div className={styles.entireDashboard}>
-      <TopBar title="All users" showCreateButton={false} />
+  <div className={styles.entireDashboard}>
+    <Paw />
+    <TopBar title="All users" showCreateButton={false} />
+    <div className={styles.contentWrapper}>
+      <Sidebar />
       <div className={styles.userContainer}>
         {users.map((user, index) => (
-          <User
-            key={index}
-            name={user.fullName}
-            role={user.isAdmin ? 'Admin' : 'User'}
-            location={user.email}
-          />
+          <div className={styles.userCard} key={index}>
+            <User
+              name={user.fullName}
+              role={user.isAdmin ? 'Admin' : 'User'}
+              location={user.email}
+            />
+          </div>
         ))}
       </div>
     </div>
-  );
-};
+  </div>
+);
+}
 
 export default UsersDashboard;

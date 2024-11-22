@@ -7,15 +7,100 @@
 .entireDashboard {
     max-width: 1400px;
 }
+.contentWrapper {
+    display: flex;           /* Use Flexbox to arrange elements side by side */
+    gap: 20px;               /* Space between sidebar and logs container */
+    width: 100%;             /* Ensure it takes the full width of the parent container */
+  }
+.topBar {
+    width: 100%;
+    /* Make the top bar span the full width */
+  }
+  
+  .mainContent {
+    display: flex;
+    width: 100%;
+  }
+  
+  .sidebar {
+    width: 200px; /* Set a fixed width for sidebar */
+    flex-shrink: 0; /* Prevent shrinking */
+  }
 
-.animalContainer {
+  .sidebar {
+    flex: 0 0 250px; /* Adjust width of the sidebar */
+    margin-right: 20px; /* Space between sidebar and animal container */
+  }
+  
+  .animalContainerWrapper {
+    flex: 1; /* This makes the animal container take up remaining space */
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-}
-
+  }
+  
+  .animalContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
 .separator {
     border: none;
     border-top: 1px solid #ddd;
 }
+.navAndAnimalWrapper {
+    display: flex;
+    width: 100%; /* Ensures it takes the full width of the container */
+  }
+  
+  .sidebar {
+    flex: 0 0 250px; /* Sidebar has a fixed width */
+    margin-right: 20px; /* Space between sidebar and animal container */
+  }
+  
+  .animalContainerWrapper {
+    flex: 1; /* Animal container will take up the remaining space */
+    display: flex;
+    flex-direction: row; /* If you want it to stack vertically within this section */
+    justify-content: flex-start;
+    flex: 1;
+    gap: 10px;
+    margin-left: 5%;
+
+  }
+  
+  .animalContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-height: 600px;
+  }
+  
+  .animalContainer,
+.animalFormContainer {
+  max-width: 600px; /* Sets a max-width to keep the elements from stretching too wide */
+  margin-left: 10%;
+  width: 100%; /* Ensures that elements are responsive */
+  margin: 0 auto; /* Centers the elements inside the container */
+  flex-shrink: 0; /* Prevents elements from shrinking */
+}
+/* Style for each Animal card */
+.animalCard {
+    max-height: 325px; /* Limit the max height to make it smaller */
+    overflow: hidden;  /* Hide overflow if content exceeds the max height */
+    padding: 10px;     /* Adjust padding to make the content fit */
+    margin: 5px;       /* Adjust margin for spacing between cards */
+    border: 1px solid #ddd;  /* Optional border for better visibility */
+    border-radius: 8px; /* Rounded corners for a nicer look */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out content vertically */
+    background-color: #f9f9f9; /* Light background color */
+    width: 325px; /* Set a width for each card to control its size */
+    text-align: center; /* Center-align content if desired */
+  }
+  

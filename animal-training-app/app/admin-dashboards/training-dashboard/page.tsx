@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import TopBar from '../animal-dashboard/Topbar';
 import TrainLogNew from './TrainLogNew';
 import styles from './trainLogs.module.css';
-import Sidebar from '../components/Sidebar';
-import Paw from '../animal-dashboard/Paw'; // Import the Paw component
+import Sidebar from '@/app/components/Sidebar';
+import Paw from '@/app/animal-dashboard/Paw'; // Import the Paw component
 
 const TrainingLogsPage: React.FC = () => {
   const [logs, setLogs] = useState<{ date: string; title: string; description: string }[]>([]);

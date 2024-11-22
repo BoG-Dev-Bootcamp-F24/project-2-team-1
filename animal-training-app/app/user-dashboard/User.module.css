@@ -40,3 +40,21 @@
     font-size: 14px;
     color: #666;
   }
+  .contentWrapper {
+    display: flex;         /* Use Flexbox to arrange elements side by side */
+    gap: 20px;             /* Space between the sidebar and user container */
+    width: 100%;           /* Ensure it takes the full width of the parent container */
+  }
+  
+  .sidebar {
+    flex: 0 0 250px;       /* Fix the width of the sidebar to 250px */
+    margin-right: 20px;    /* Optional, add some space on the right */
+  }
+  
+  .userContainer {
+    flex: 1;               /* Take the remaining space in the container */
+    display: flex;
+    flex-wrap: wrap;       /* Allows wrapping of user items */
+    gap: 10px;             /* Space between each user card */
+    justify-content: center; /* Center content if needed */
+  }

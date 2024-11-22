@@ -11,3 +11,33 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;
   }
+  .contentWrapper {
+    display: flex;         /* Use Flexbox to arrange elements side by side */
+    gap: 20px;             /* Space between the sidebar and user container */
+    width: 100%;           /* Ensure it takes the full width of the parent container */
+  }
+  
+  .sidebar {
+    flex: 0 0 250px;       /* Fix the width of the sidebar to 250px */
+    margin-right: 20px;    /* Optional, add some space on the right */
+  }
+  
+  .userContainer {
+    flex: 1;                   /* Take the remaining space in the container */
+    display: flex;
+    flex-wrap: wrap;           /* Allows wrapping of user items */
+    column-gap: 10px;          /* Horizontal space between each user card */
+    row-gap: 5px;              /* Vertical space between each user card */
+    justify-content: center;   /* Center content if needed */
+  }
+  .userCard {
+    max-width: 345px;      /* Set a maximum width for each user card */
+    max-height: 100px;     /* Set a maximum height for each user card */
+    width: 100%;           /* Ensure that user cards are responsive */
+    padding: 15px;         /* Add padding inside each user card */
+    background-color: #f9f9f9; /* Optional: set a background color */
+    border: 1px solid #ddd; /* Optional: add a light border */
+    border-radius: 8px;    /* Optional: rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+    overflow: hidden;      /* Hide overflow if content exceeds max-height */
+  }
